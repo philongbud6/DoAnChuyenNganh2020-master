@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://demos.creative-tim.com/material-kit-pro/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="https://demos.creative-tim.com/material-kit-pro/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>
+        Website Bán Hàng
+    </title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
+    <link href="~/Content/AdminNew_files/material-dashboard.css" rel="stylesheet">
+
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="~/Content/Client/css.css">
+    <link rel="stylesheet" href="~/Content/Client/font-awesome.css">
+    <!-- CSS Files -->
+    <link href="~/Content/Client/material-kit.css" rel="stylesheet">
+    <script type="text/javascript" charset="UTF-8" src="~/Content/Client/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="~/Content/Client/util.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="~/Content/Client/AuthenticationService.Authenticate"></script>
+</head>
+<body class="ecommerce-page sidebar-collapse" style=" ">
+    <nav class="navbar navbar-color-on-scroll fixed-top navbar-expand-lg navbar-transparent" color-on-scroll="100" id="sectionsNav">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="@Url.Action("Index","Client_TrangChu")">
+                    Client
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    @Html.Action("GioHangPartial", "Client_GioHang")
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url(../../../../Content/Client/Img/HomePage.jpg); transform: translate3d(0px, 0px, 0px);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center" style="margin-top:15%">
+                    <div class="brand">
+                        <h1 class="title">Website Bán Giày</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--Noi bat-->
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer class="footer footer-black footer-big " style="padding-bottom:2px">
+        <div class="container">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>About Us</h5>
+                        <p>Website Bán Giày </p>
+
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Địa chỉ các chi nhánh </h5>
+                        @Html.Action("Partial_footer_cuahangaddress", "Client_partial")
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </footer>
+ 
+    <!--   Core JS Files   -->
+    <script src="~/Content/Client/jquery.js" type="text/javascript"></script>
+    <script src="~/Content/Client/popper.js" type="text/javascript"></script>
+    <script src="~/Content/Client/bootstrap-material-design.js" type="text/javascript"></script>
+    <script src="~/Content/Client/moment.js"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="~/Content/Client/bootstrap-datetimepicker.js" type="text/javascript"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="~/Content/Client/nouislider.js" type="text/javascript"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="~/Content/Client/js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async="" defer="defer" src="~/Content/Client/buttons.js"></script>
+    <!--	Plugin for Sharrre btn -->
+    <script src="~/Content/Client/jquery_002.js" type="text/javascript"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="~/Content/Client/bootstrap-tagsinput.js"></script>
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="~/Content/Client/bootstrap-selectpicker.js" type="text/javascript"></script>
+    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="~/Content/Client/jasny-bootstrap.js" type="text/javascript"></script>
+    <!--	Plugin for Small Gallery in Product Page -->
+    <script src="~/Content/Client/jquery_003.js" type="text/javascript"></script>
+    <!-- Plugins for presentation and navigation  -->
+    <script src="~/Content/Client/modernizr.js" type="text/javascript"></script>
+    <script src="~/Content/Client/vertical-nav.js" type="text/javascript"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async="" defer="defer" src="~/Content/Client/buttons.js"></script>
+    <!-- Js With initialisations For Demo Purpose, Don't Include it in Your Project -->
+    <script src="~/Content/Client/demo.js" type="text/javascript"></script>
+
+
+    <style>
+        .material-icons.md-36 {
+            font-size: 36px;
+            color: rgba(255, 255, 255, 1);
+        }
+        .material-icons.md-dark {
+        }
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+   
+    <script>
+        $(document).ready(function () {
+            var slider2 = document.getElementById('sliderRefine');
+
+            noUiSlider.create(slider2, {
+                start: [101, 790],
+                connect: true,
+                range: {
+                    'min': [30],
+                    'max': [900]
+                }
+            });
+
+            var limitFieldMin = document.getElementById('price-left');
+            var limitFieldMax = document.getElementById('price-right');
+
+            slider2.noUiSlider.on('update', function (values, handle) {
+                if (handle) {
+                    limitFieldMax.innerHTML = $('#price-right').data('currency') + Math.round(values[handle]);
+                } else {
+                    limitFieldMin.innerHTML = $('#price-left').data('currency') + Math.round(values[handle]);
+                }
+            });
+        });
+
+    </script>
+
+</body>
+</html>

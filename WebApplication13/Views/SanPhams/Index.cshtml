@@ -1,0 +1,100 @@
+﻿@model IEnumerable<WebApplication13.Models.SanPham>
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_LayoutAdminNew.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-icon card-header-info">
+                    <div class="card-icon">
+                        <div style="font-size:40px" class="font-weight-bolder">
+                            Danh Sách Sản Phẩm
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="toolbar">
+                        <a class="btn btn-round btn-lg btn-info" href="@Url.Action("Create","SanPhams")">
+                            <i class="material-icons">add_circle_outline</i>
+                        </a>
+                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                    </div>
+                    <hr />
+                    <div class="material-datatables">
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped row-border table-responsive">
+                                <thead style="background-color:bisque;font-size:25px " class="text-center">
+                                    <tr>
+                                        <th width="250px">Mã Sản Phẩm</th>
+                                        <th width="250px">Tên Sản Phẩm</th>
+                                        <th width="250px">Loại Sản Phẩm</th>
+                                        <th width="200px">Số Lượng</th>
+                                        <th width="200px">Đơn Giá</th>
+                                        <th width="250px">Chức Năng</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr style="text-align:center">
+
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MaSanPham)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TenSP)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SoLuong)
+                                            </td>
+
+
+                                            <td>
+                                                @string.Format("{0:0,0}", item.DonGia)
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-round  btn-info" href="@Url.Action("Edit","SanPhams", new { id = item.SanPhamId } )">
+                                                    <i class="material-icons">create</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                                <a href="@Url.Action("Delete","SanPhams",new { id = item.SanPhamId })" class="btn btn-danger btn-round" data-original-title="" title="">
+                                                    <i class="material-icons">close</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<!-- this page js -->
+<script src="~/Admin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+<script src="~/Admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+<script src="~/Admin/assets/extra-libs/DataTables/datatables.min.js"></script>
+<script>
+    /****************************************
+     *       Basic Table                   *
+     ****************************************/
+    $('#zero_config').DataTable();
+</script>
+

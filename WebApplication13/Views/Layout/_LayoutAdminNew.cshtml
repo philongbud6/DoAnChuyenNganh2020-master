@@ -1,0 +1,782 @@
+﻿@using WebApplication13.Models
+<!DOCTYPE html>
+<html class="perfect-scrollbar-on" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>
+        Website Bán Giày
+    </title>
+    <link rel="stylesheet" type="text/css" href="~/Content/AdminNew_files/css.css">
+    <link rel="stylesheet" href="~/Content/AdminNew_files/font-awesome.css">
+    <!-- CSS Files -->
+    <link href="~/Content/AdminNew_files/material-dashboard.css" rel="stylesheet">
+
+    <script type="text/javascript" charset="UTF-8" src="~/Content/AdminNew_files/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="~/Content/AdminNew_files/util.js"></script>
+</head>
+
+<body class="">
+
+    <div class="wrapper ">
+        <div class="sidebar" data-color="azure" data-background-color="black">
+
+            <!-- Logo-->
+            <div class="logo">
+                <a href="@Url.Action("TrangChu","Admin")" class="simple-text logo-mini">
+                    AD
+                </a>
+                <a href="@Url.Action("TrangChu","Admin")" class="simple-text logo-normal">
+                    Admin
+                </a>
+            </div>
+            <!-- End Logo-->
+            <!--Left Sidebar-->
+            <div class="sidebar-wrapper ps-container ps-theme-default" data-ps-id="4a0f49c8-e921-5586-af22-335174a5ab26">
+
+
+                <!-- #region Account -->
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="user">
+                            <div class="photo">
+                                <img src="~/img/avt_empty.jpeg">
+                            </div>
+                            <div class="user-info">
+                                <a data-toggle="collapse" href="#collapseExample" class="username">
+                                    <span>
+                                        @Html.Name("Hi " + User.LastName() + User.FirstName() + " !")
+                                        <b class="caret"></b>
+                                    </span>
+                                </a>
+                                <div class="collapse" id="collapseExample">
+                                    <ul class="nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <span class="sidebar-mini"> MP </span>
+                                                <span class="sidebar-normal"> My Profile </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <span class="sidebar-mini"> EP </span>
+                                                <span class="sidebar-normal"> Edit Profile </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Action("Index", "Manage", routeValues: null) ">
+                                                <span class="sidebar-mini"> AS </span>
+                                                <span class="sidebar-normal"> Account Settings </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
+                                                <span class="sidebar-mini"> L </span>
+                                                <span class="sidebar-normal"> Logout </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+                <!-- #endregion -->
+                <!-- #region Silde bar -->
+                <ul class="nav">
+                    <!-- #region Trang Chủ -->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("TrangChu","Admin")">
+                            <i class="material-icons">dashboard</i>
+                            <p> Trang Chủ</p>
+                        </a>
+                    </li>
+
+                    <!-- #endregion -->
+                    <!-- #region Quản Lý Sản Phẩm -->
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+                            <i class="material-icons">image</i>
+                            <p>
+                                Quản Lý Sản Phẩm
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+
+                        <div class="collapse" id="pagesExamples">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Create","SanPhams")">
+                                        <span class="sidebar-mini"> P </span>
+                                        <span class="sidebar-normal"> Thêm Sản Phẩm</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Index","SanPhams")">
+                                        <span class="sidebar-mini"> RS </span>
+                                        <span class="sidebar-normal"> Danh Sách Sản Phẩm </span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- #endregion -->
+                    <!-- #region Quản Ly Loại Sản Phẩm -->
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+                            <i class="material-icons">content_paste</i>
+                            <p>
+                                Quản Lý Loại Sản Phẩm
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="formsExamples">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Create","LoaiSPs")">
+                                        <span class="sidebar-mini"> T </span>
+                                        <span class="sidebar-normal">Thêm Loại Sản Phẩm</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Index","LoaiSPs")">
+                                        <span class="sidebar-mini"> DS </span>
+                                        <span class="sidebar-normal">Danh Sách Loại Sản Phẩm</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- #endregion -->
+                    <!-- #region Quản Lý Nhà Cung Cấp -->
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+                            <i class="material-icons">grid_on</i>
+                            <p>
+                                Quản Lý Nhà Cung Cấp
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="tablesExamples">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Create","NhaCungCaps")">
+                                        <span class="sidebar-mini"> T </span>
+                                        <span class="sidebar-normal">Thêm Nhà Cung Cấp</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Index","NhaCungCaps")">
+                                        <span class="sidebar-mini"> DS </span>
+                                        <span class="sidebar-normal">Nhà Cung Cấp</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <!-- #endregion -->
+                    <!-- #region Quản Lý Kho Vận -->
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#tableskhoVan">
+                            <i class="material-icons">grid_on</i>
+                            <p>
+                                Quản Lý Kho Vận
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="tableskhoVan">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Create","PhieuChuyenKho")">
+                                        <span class="sidebar-mini"> T </span>
+                                        <span class="sidebar-normal"> Lập Phiếu Mới</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Index","PhieuChuyenKho")">
+                                        <span class="sidebar-mini"> T </span>
+                                        <span class="sidebar-normal">Danh Sách Phiếu Nhận Hàng</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item ">
+
+                                    <a class="nav-link" href="@Url.Action("TaiKhoan","Nhanvien")">
+                                        <span class="sidebar-mini"> T </span>
+                                        <span class="sidebar-normal">Danh sách Phiếu Chuyển Hàng</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <!-- #endregion -->
+                    <!-- #region Cửa hàng -->
+                    <!--<li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
+                            <i class="material-icons">apps</i>
+                            <p>
+                                Quản Lý Cửa Hàng
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="componentsExamples">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" data-toggle="collapse" href="#componentsCollapse">
+                                        <span class="sidebar-mini"> MLT </span>
+                                        <span class="sidebar-normal">
+                                            Danh Sách Cửa Hàng
+                                            <b class="caret"></b>
+                                        </span>
+                                    </a>
+                                    <div class="collapse" id="componentsCollapse">
+
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    End Quản Lý Cửa Hàng-->
+                    <!-- #endregion -->
+                    <!-- #region Thống kê -->
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#ThongKe">
+                            <i class="material-icons">insert_chart_outlined</i>
+                            <p>
+                                Thống Kê Doanh Số
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="ThongKe">
+                            <ul class="nav">
+
+                                <li class="nav-item ">
+                                    <a class="nav-link" data-toggle="collapse" href="#CuaHang">
+                                        <span class="sidebar-mini"> </span>
+                                        <span class="sidebar-normal">
+                                            Thống Kê Theo Cửa Hàng
+                                            <b class="caret"></b>
+                                        </span>
+                                    </a>
+                                    <div class="collapse" id="CuaHang">
+                                        @*@Html.Action("TKCuaHang", "Admin")*@
+                                    </div>
+
+                                </li>
+                                <ul class="nav">
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="@Url.Action("TongDoanhSo","ThongKeAdmin")">
+                                            <span class="sidebar-mini"> DS </span>
+                                            <span class="sidebar-normal">Thống kê Tổng Doanh Số</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <li class="nav-item ">
+                                    <a class="nav-link" data-toggle="collapse" href="#BieuDo">
+                                        <span class="sidebar-mini"> </span>
+                                        <span class="sidebar-normal">
+                                            Biểu Đồ
+                                            <b class="caret"></b>
+                                        </span>
+                                    </a>
+                                    <div class="collapse" id="BieuDo">
+                                        <ul class="nav">
+                                            <li class="nav-item ">
+                                                <a class="nav-link" href="@Url.Action("TongDS","ThongKeAdmin")">
+                                                    <span class="sidebar-mini"> DS </span>
+                                                    <span class="sidebar-normal">Biểu đồ line</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- #endregion -->
+                    <!-- #region Quản Lý Nhân Viên -->
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#tablesRole">
+                            <i class="material-icons">grid_on</i>
+                            <p>
+                                Quản Lý Nhân Viên
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="tablesRole">
+
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("register1","Account")">
+                                        <span class="sidebar-mini"> DS </span>
+                                        <span class="sidebar-normal">Thêm Nhân Viên</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("NhanVien","NhanVien")">
+                                        <span class="sidebar-mini"> DS </span>
+                                        <span class="sidebar-normal">Danh Sách Nhân Viên</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- #endregion -->
+                    <!-- #region Quản Lý Tài Khoản -->
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#tablesaccount">
+                            <i class="material-icons">grid_on</i>
+                            <p>
+                                Quản Lý Tài Khoản
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="tablesaccount">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("register","account")">
+                                        <span class="sidebar-mini"> T </span>
+                                        <span class="sidebar-normal">Thêm Tài Khoản</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Create","NhanVien")">
+                                        <span class="sidebar-mini"> T </span>
+                                        <span class="sidebar-normal">Thêm Quyền</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item ">
+
+                                    <a class="nav-link" href="@Url.Action("TaiKhoan","Nhanvien")">
+                                        <span class="sidebar-mini"> T </span>
+                                        <span class="sidebar-normal">Danh sách Tài Khoản</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("roles","NhanVien")">
+                                        <span class="sidebar-mini"> DS </span>
+                                        <span class="sidebar-normal">Danh Sách Quyền Hiện Tại</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <!-- #endregion -->
+                </ul>
+
+
+                <!-- #endregion -->
+
+                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+            </div>
+            <!-- End Left SideBar-->
+
+            <div class="sidebar-background" style="background-image: url(../../Content/AdminNew_files/sidebar-4.jpg) "></div>
+        </div>
+        <div class="main-panel ps-container ps-theme-default" data-ps-id="7852d2a9-631d-ff63-ab5c-a9d19ce750f9">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-minimize">
+                            <button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
+                                <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
+                                <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
+                            </button>
+                        </div>
+                        <a class="navbar-brand" href="#pablo"></a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="content">
+
+                    <div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+        </div>
+    </div>
+    <div class="fixed-plugin">
+        <div class="dropdown show-dropdown">
+            <a href="#" data-toggle="dropdown">
+                <i class="fa fa-cog fa-2x"> </i>
+            </a>
+            <ul class="dropdown-menu">
+
+                <iframe src='https://webchat.botframework.com/embed/truong_bot_0205?s=NRrEIjWHiXs.3n9xru7MQQIYwXO86No8Hy1B83mpsKvyAdDZt7xfJ2M' style='min-width: 200px; width: 100%; min-height: 400px; margin-top:3%'> </iframe>            
+            </ul>
+        </div>
+    </div>
+    
+    <!--   Core JS Files   -->
+    <script src="~/Content/AdminNew_files/jquery_003.js"></script>
+    <script src="~/Content/AdminNew_files/popper.js"></script>
+    <script src="~/Content/AdminNew_files/bootstrap-material-design.js"></script>
+    <script src="~/Content/AdminNew_files/perfect-scrollbar.js"></script>
+    <!-- Plugin for the momentJs  -->
+    <script src="~/Content/AdminNew_files/moment.js"></script>
+    <!--  Plugin for Sweet Alert -->
+    <script src="~/Content/AdminNew_files/sweetalert2.js"></script>
+    <!-- Forms Validations Plugin -->
+    <script src="~/Content/AdminNew_files/jquery_004.js"></script>
+    <script src="~/Content/AdminNew_files/jquery_002.js"></script>
+    <script src="~/Content/AdminNew_files/bootstrap-selectpicker.js"></script>
+
+    <script src="~/Content/AdminNew_files/bootstrap-datetimepicker.js"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+    <script src="~/Content/AdminNew_files/jquery.js"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="~/Content/AdminNew_files/bootstrap-tagsinput.js"></script>
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="~/Content/AdminNew_files/jasny-bootstrap.js"></script>
+    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+    <script src="~/Content/AdminNew_files/fullcalendar.js"></script>
+
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="~/Content/AdminNew_files/nouislider.js"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+    <script src="~/Content/AdminNew_files/core.js"></script>
+    <!-- Library for adding dinamically elements -->
+    <script src="~/Content/AdminNew_files/arrive.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async="" defer="defer" src="~/Content/AdminNew_files/buttons.js"></script>
+    <!-- Chartist JS -->
+    <script src="~/Content/AdminNew_files/chartist.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="~/Content/AdminNew_files/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="~/Content/AdminNew_files/material-dashboard.js" type="text/javascript"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="~/Content/AdminNew_files/demo.js"></script>
+    <script>
+        $(document).ready(function () {
+            $().ready(function () {
+                $sidebar = $('.sidebar');
+
+                $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+                $full_page = $('.full-page');
+
+                $sidebar_responsive = $('body > .navbar-collapse');
+
+                window_width = $(window).width();
+
+                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+                if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+                    if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                        $('.fixed-plugin .dropdown').addClass('open');
+                    }
+
+                }
+
+                $('.fixed-plugin a').click(function (event) {
+                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                    if ($(this).hasClass('switch-trigger')) {
+                        if (event.stopPropagation) {
+                            event.stopPropagation();
+                        } else if (window.event) {
+                            window.event.cancelBubble = true;
+                        }
+                    }
+                });
+
+                $('.fixed-plugin .active-color span').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-color', new_color);
+                    }
+
+                    if ($full_page.length != 0) {
+                        $full_page.attr('filter-color', new_color);
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.attr('data-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .background-color .badge').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('background-color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-background-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .img-holder').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).parent('li').siblings().removeClass('active');
+                    $(this).parent('li').addClass('active');
+
+
+                    var new_image = $(this).find("img").attr('src');
+
+                    if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                        $sidebar_img_container.fadeOut('fast', function () {
+                            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                            $sidebar_img_container.fadeIn('fast');
+                        });
+                    }
+
+                    if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                        $full_page_background.fadeOut('fast', function () {
+                            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                            $full_page_background.fadeIn('fast');
+                        });
+                    }
+
+                    if ($('.switch-sidebar-image input:checked').length == 0) {
+                        var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                    }
+                });
+
+                $('.switch-sidebar-image input').change(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $input = $(this);
+
+                    if ($input.is(':checked')) {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar_img_container.fadeIn('fast');
+                            $sidebar.attr('data-image', '#');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page_background.fadeIn('fast');
+                            $full_page.attr('data-image', '#');
+                        }
+
+                        background_image = true;
+                    } else {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar.removeAttr('data-image');
+                            $sidebar_img_container.fadeOut('fast');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page.removeAttr('data-image', '#');
+                            $full_page_background.fadeOut('fast');
+                        }
+
+                        background_image = false;
+                    }
+                });
+
+                $('.switch-sidebar-mini input').change(function () {
+                    $body = $('body');
+
+                    $input = $(this);
+
+                    if (md.misc.sidebar_mini_active == true) {
+                        $('body').removeClass('sidebar-mini');
+                        md.misc.sidebar_mini_active = false;
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+                    } else {
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                        setTimeout(function () {
+                            $('body').addClass('sidebar-mini');
+
+                            md.misc.sidebar_mini_active = true;
+                        }, 300);
+                    }
+
+                    // we simulate the window Resize so the charts will get updated in realtime.
+                    var simulateWindowResize = setInterval(function () {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 180);
+
+                    // we stop the simulation of Window Resize after the animations are completed
+                    setTimeout(function () {
+                        clearInterval(simulateWindowResize);
+                    }, 1000);
+
+                });
+            });
+        });
+    </script>
+
+    <!-- Sharrre libray -->
+    <script src="~/Content/AdminNew_files/jquery_005.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            md.initDashboardPageCharts();
+
+            md.initVectorMap();
+
+        });
+    </script>
+    @RenderSection("Scripts", false)
+    @RenderSection("ScriptsTest", false)
+    @RenderSection("SC", false)
+
+    <!--Bắt lỗi-->
+    <!------------------------------------------------------------->
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        #ofBar {
+            background: #40312d;
+            width: 50%;
+            left: 25%;
+            min-height: 55px;
+            position: fixed;
+            top: 0;
+            z-index: 999999999;
+            font-size: 16px;
+            color: #fff;
+            padding: 15px 5%;
+            font-weight: 400;
+            border-radius: 0 0 5px 5px;
+        }
+
+            #ofBar b {
+                font-size: 16px !important;
+            }
+
+        #count-down {
+            display: initial;
+            padding-left: 10px;
+            font-weight: bold;
+        }
+
+        #close-bar {
+            font-size: 22px;
+            color: #3e3947;
+            margin-right: 0;
+            position: fixed;
+            right: 26%;
+            background: white;
+            opacity: 0.8;
+            padding: 0px;
+            height: 30px;
+            line-height: 27px;
+            width: 30px;
+            border-radius: 50%;
+            text-align: center;
+            top: 12px;
+            cursor: pointer;
+            z-index: 9999999999;
+            font-weight: 200;
+        }
+
+            #close-bar:hover {
+                opacity: 1;
+            }
+
+        #btn-bar {
+            background-color: #fff;
+            color: #40312d;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            opacity: .95;
+            margin-left: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #btn-bar {
+            opacity: 1;
+        }
+
+            #btn-bar span {
+                color: red;
+            }
+    </style>
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+    </style>
+    <div class="jvectormap-tip"></div>
+</body>
+</html>

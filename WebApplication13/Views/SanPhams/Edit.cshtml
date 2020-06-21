@@ -1,0 +1,142 @@
+﻿@model WebApplication13.Models.SanPham
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Layout/_LayoutAdminNew.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="RangeValidation" class="form-horizontal" action="" method="" novalidate="novalidate">
+                    <div class="card ">
+                        <div class="card-header card-header-info card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Thông Tin Sản Phẩm</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div style="font-size:18px" class="col-md-10 ml-auto mr-5">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.SanPhamId)
+                                <div class="row mt-1">
+                                    <label class="col-sm-2 col-form-label">Mã Sản Phẩm:</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            @Html.EditorFor(model => model.MaSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.MaSanPham, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <label class="col-sm-2 col-form-label">Tên Sản Phẩm:</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <label class="col-sm-2 col-form-label">Số Lượng :</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <label class="col-sm-2 col-form-label">Mô Tả :</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-1">
+                                    <label class="col-sm-2 col-form-label">Giá Bán :</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*<div class="row mt-3">
+                                        <label class="col-sm-2 col-form-label">Nhà Cung Cấp :</label>
+                                        <div class="col-sm-7">
+                                            <div class="form-group bmd-form-group">
+                                                @Html.DropDownList("NhaCungCapId", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.NhaCungCapId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <label class="col-sm-2 col-form-label">Loại Sản Phẩm :</label>
+                                        <div class="col-sm-7">
+                                            <div class="form-group bmd-form-group">
+                                                @Html.DropDownList("LoaiSPId", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.LoaiSPId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                @*@Html.Action("EditDDL", new {@id = Model.LoaiSPId })*@
+
+                                <div class="form-group mt-4">
+                                    <div class="col-md-offset-2 col-md-10 mt-5 mb-5">
+                                        <a class="btn btn-outline-danger btn-lg float-left" href="@Url.Action("Index","SanPhams")"> Trở Về</a>
+                                        <input type="submit" value="Lưu Thay Đổi" class="btn btn-outline-danger btn-lg float-right" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function GetCity(_stateId) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#ddlcity").html(procemessage).show();
+        var url = "/Testing/GetNCCByLoaiSPId/";
+
+        $.ajax({
+            url: url,
+            data: { DD_LoaiSPId: _stateId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value='0'>Chọn Nhà Cung Cấp</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ddlcity").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+</script>
+
+
+

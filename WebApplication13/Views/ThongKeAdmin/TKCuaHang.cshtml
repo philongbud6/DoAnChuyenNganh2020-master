@@ -1,0 +1,58 @@
+﻿@using WebApplication13.Models
+@model List<Test<DateTime, int, int, float>>
+@{
+    Layout = "~/views/layout/_layoutAdminNew.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary card-header-info">
+                    <h4 class="card-title" style="font-size:30px">Thống Kê</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                            <th>
+                                Ngày Lập
+                            </th>
+                            <th>
+                                Tổng Hoá Đơn
+                            </th>
+                            <th>
+                                Tổng Sản Phẩm
+                            </th>
+                            <th>
+                                Tổng Tiền
+                            </th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @string.Format("{0:dd/MM/yyy}", item.Key)
+                                        </td>
+                                        <td>
+                                            @item.TongDH
+                                        </td>
+                                        <td>
+                                            @item.TongSL
+                                        </td>
+                                        <td>
+                                            @string.Format("{0:0,0}", @item.TongTien) VNĐ
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

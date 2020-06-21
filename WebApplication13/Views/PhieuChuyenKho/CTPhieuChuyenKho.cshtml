@@ -1,0 +1,119 @@
+﻿@model IEnumerable<WebApplication13.Models.CTPhieuChuyenKho>
+
+
+@{
+
+    ViewBag.Title = "CTPhieuChuyenKho";
+    Layout = "~/Views/Layout/_LayoutAdminNew.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-info">
+                        <div class="card-icon">
+                            <div style="font-size:35px" class="font-weight-bolder">
+                                Danh Sách Phiếu Chuyển Kho
+                            </div>
+                            <div class="ripple-container"></div>
+                        </div>
+                    </div>
+                    <div class="card-body ml-5" style="padding-right:70px">
+                        <div class="table-responsive">
+                            <table class="table" style="font-size:18px">
+                                <thead class=" text-primary" style="text-align:center">
+                                    <tr>
+                                        @*<th>Mã phiếu</th>*@
+                                        <th>Mã Sản Phẩm</th>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Số Lượng Chuyển</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr style="text-align:center">
+                                            @*<td class="title">
+                                                    <a class="link;" href="#">@item.CTPhieuChuyenKhoId</a>
+                                                </td>*@
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SanPhamId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SanPham.TenSP)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SoLuongChuyen)
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+
+                            </table>
+                            <div>
+                                <hr />
+                                @*<a href="@Url.Action("Index","PhieuChuyenKho")" class="btn btn-info float-left" style="font-size:13px">Trở về</a>*@
+                                <div>
+                                    <button class="btn btn-info float-right" id="btnReject" style="font-size:13px" @ViewBag.Check>Từ Chối</button>
+                                    <button class="btn btn-info float-right" style="font-size:13px" id="btnConfirm" @ViewBag.Check>Xác Nhận Phiếu</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section SC
+{
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+
+        $(function () {
+            $("#btnConfirm").click(function () {
+                //alert("");
+                var dataObject = JSON.stringify({
+                    'phieuchuyenkhoId': @ViewBag.Id,
+                    'KhoHangId' : @ViewBag.MaCH,
+                });
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Confirm")',
+                    data: dataObject,
+
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (d) {
+                        //alert("Data has been added successfully.");
+                        if (d.message != 'SUCCESS') {
+                            alert(d.Message);
+
+                        }
+                         $("#btnConfirm").attr('disabled','disabled');
+                         $("#btnReject").attr('disabled','disabled');
+                    },
+                    error: function () {
+                        alert("Error while inserting data");
+                    }
+                });
+                return false;
+            });
+        });
+
+
+    </script>
+}
+
+

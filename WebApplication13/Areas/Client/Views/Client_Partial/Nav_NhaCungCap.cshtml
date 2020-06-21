@@ -1,0 +1,14 @@
+﻿@model IEnumerable<WebApplication13.Models.NhaCungCap>
+
+
+@foreach (var item in Model)
+{
+    <div style="padding-left:80px">
+        <a href="@Url.Action("SPbyNhaCungCap","Client_sanPham", new { NhaCungCapId = item.NhaCungCapId })">
+            <img src="@item.Url_Image" alt="..." width="150px" height="100px" style="margin-right:2em" />
+        </a>
+    </div>
+
+}
+
+

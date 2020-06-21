@@ -1,0 +1,192 @@
+﻿@using WebApplication13.Areas.Client.Models
+@using WebApplication13.Models
+@model List<GroupByLoaiSP<string, IEnumerable<SanPham>>>
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Client/Views/Layout/_layoutClient.cshtml";
+
+}
+<div class="main main-raised">
+    <div class="section" style="padding:20px">
+        
+    </div>
+</div>
+<!--Dien Thoai-->
+@foreach (var item in Model)
+{
+    <div class="main main-raised" style="margin-top :3%; margin-bottom:3%; height:50%">
+        <div class="section" style="padding:20px">
+            <div class="container">
+                <h2 class="section-title">@item.Key Nổi Bật</h2>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card card-refine card-plain card-rose">
+                        </div>
+                        @foreach (var firstOne in item.Values.Take(1))
+                        {
+                            <div class="col-md-9">
+                                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                                    <div class="card-header card-header-image">
+                                        <a href="@Url.Action("CTSanPham","Client_SanPham", new { Id = firstOne.SanPhamId })">
+                                            @if (!string.IsNullOrEmpty(firstOne.Url_img1))
+                                            {
+                                                <img src="@firstOne.Url_img1" alt="...">
+                                            }
+                                            else
+                                            {
+                                                <img src="@firstOne.Url_img2" alt="...">
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h4 class="card-title">@firstOne.TenSP</h4>
+                                        </a>
+                                        <p class="description">
+                                        </p>
+                                    </div>
+                                    <div class="card-footer justify-content-between">
+                                        <div class="price-container">
+                                            <span class="price"> @string.Format("{0:0,0}", firstOne.DonGia) VNĐ </span>
+                                        </div>
+                                    </div>
+                                    <div class="stats ml-auto">
+                                        <a style="font-size:16px" href="@Url.Action("ThemClient_GioHang","Client_GioHang", new { @cSanPhamId = firstOne.SanPhamId, @strURL= Request.Url.ToString()})" class="btn btn-rose btn-round"><i class="material-icons">favorite</i></a>
+
+                                    </div>
+                                </div>
+
+                                <!-- end card -->
+
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            @foreach (var rest in item.Values.Skip(1).Take(3))
+                            {
+                                <div class="col-md-4">
+                                    <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                                        <div class="card-header card-header-image">
+                                            <a href="@Url.Action("CTSanPham","Client_SanPham", new { Id = rest.SanPhamId })">
+                                                @if (!string.IsNullOrEmpty(rest.Url_img1))
+                                                {
+                                                    <img src="@rest.Url_img1" alt="...">
+                                                }
+                                                else
+                                                {
+                                                    <img src="@rest.Url_img2" alt="...">
+                                                }
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <a href="#">
+                                                <h4 class="card-title">@rest.TenSP</h4>
+                                            </a>
+                                            <p class="description">
+                                            </p>
+                                        </div>
+                                        <div class="card-footer justify-content-between">
+                                            <div class="price-container">
+                                                <span class="price"> @string.Format("{0:0,0}", rest.DonGia) VNĐ</span>
+                                            </div>
+                                        </div>
+                                        <div class="stats ml-auto">
+                                            <a style="font-size:16px" href="@Url.Action("ThemClient_GioHang","Client_GioHang", new { @cSanPhamId = rest.SanPhamId, @strURL= Request.Url.ToString()})" class="btn btn-rose btn-round"><i class="material-icons">favorite</i></a>
+
+                                        </div>
+                                    </div>
+                                    <!-- end card -->
+                                </div>
+                            }
+
+
+                        </div>
+                        <div class="col-md-3 ml-auto mr-auto">
+                            <a href="@Url.Action("Index","Client_SanPham", new { TenLoai = item.Key })" rel="tooltip" class="btn btn-rose btn-round" data-original-title="" title="">Load more...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+}
+
+
+
+<style>
+    #ofBar {
+        background: #40312d;
+        width: 50%;
+        left: 25%;
+        min-height: 55px;
+        position: fixed;
+        top: 0;
+        z-index: 999999999;
+        font-size: 16px;
+        color: #fff;
+        padding: 15px 5%;
+        font-weight: 400;
+        border-radius: 0 0 5px 5px;
+    }
+
+        #ofBar b {
+            font-size: 16px !important;
+        }
+
+    #count-down {
+        display: initial;
+        padding-left: 10px;
+        font-weight: bold;
+    }
+
+    #close-bar {
+        font-size: 22px;
+        color: #3e3947;
+        margin-right: 0;
+        position: fixed;
+        right: 26%;
+        background: white;
+        opacity: 0.8;
+        padding: 0px;
+        height: 30px;
+        line-height: 27px;
+        width: 30px;
+        border-radius: 50%;
+        text-align: center;
+        top: 12px;
+        cursor: pointer;
+        z-index: 9999999999;
+        font-weight: 200;
+    }
+
+        #close-bar:hover {
+            opacity: 1;
+        }
+
+    #btn-bar {
+        background-color: #fff;
+        color: #40312d;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 14px;
+        opacity: .95;
+        margin-left: 15px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #btn-bar {
+        opacity: 1;
+    }
+
+        #btn-bar span {
+            color: red;
+        }
+</style>
+

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmSMS";
+    Layout = "~/Areas/Client/Views/Layout/_layoutClient.cshtml";
+}
+@using (Html.BeginForm("ConfirmSMS", "Client_GioHang", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="main main-raised">
+        <div class="container">
+            <div class="card card-plain">
+                <div class="card-body ml-5" style="margin-bottom:10em; margin-top:1.5em">
+                    <h3 class="card-title"> Xác Nhận Đơn Hàng</h3>
+                    <ul>
+                        <li>
+                            <p id="Result">Tin nhắn xác nhận đã được gửi tới số điện thoại của bạn </p>
+                        </li>
+                        <li>
+                            <p id="Result">Vui lòng nhập mã xác nhận: </p>
+                        </li>
+                    </ul>
+                    <div style="margin-left:5em">
+                        <input type="text" id="Token" name="Token" />
+                        <input type="submit" value="Xác Nhận" class="btn btn-success btn-sm" style="font-size:15px; margin-left:1em" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+
+    #Result {
+        font-size: 20px
+    }
+
+    .card-title {
+        font-size: 30px
+    }
+</style>

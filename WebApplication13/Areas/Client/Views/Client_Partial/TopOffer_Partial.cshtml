@@ -1,0 +1,49 @@
+﻿@using WebApplication13.Areas.Client.Models
+@using WebApplication13.Models
+
+<div class="col-md-7">
+    <div class="row">
+        @foreach (var rest in Model)
+        {
+            <div class="col-md-6">
+                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                    <div class="card-header card-header-image">
+                        <a href="@Url.Action("CTSanPham","Client_SanPham", new { Id = rest.SanPhamId })">
+                            @if (!string.IsNullOrEmpty(rest.Url_img1))
+                            {
+                                <img src="@rest.Url_img1" alt="..." style="width:320px;height:200px">
+                            }
+                            else
+                            {
+                                <img src="@rest.Url_img2" alt="...">
+                            }
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <a href="#">
+                            <h4 class="card-title">@rest.TenSP</h4>
+                        </a>
+                        <p class="description">
+                        </p>
+                    </div>
+                    <div class="card-footer justify-content-between">
+                        <div class="price-container">
+                            <span class="price"> @string.Format("{0:0,0}", rest.DonGia) VNĐ</span>
+                        </div>
+                    </div>
+                    <div class="stats ml-auto">
+                        <span href="@Url.Action("ThemClient_GioHang","Client_GioHang", new { @cSanPhamId = rest.SanPhamId, @strURL= Request.Url.ToString()})" type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
+                            <i class="material-icons">favorite</i>
+                        </span>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div>
+        }
+
+
+    </div>
+</div>
+
+
+

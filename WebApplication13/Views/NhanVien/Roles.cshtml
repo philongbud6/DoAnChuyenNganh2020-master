@@ -1,0 +1,98 @@
+﻿@using Microsoft.AspNet.Identity.EntityFramework;
+@model  IEnumerable<IdentityRole>
+
+
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/Layout/_LayoutAdminNew.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-info">
+                        <div class="card-icon">
+                            <div style="font-size:35px" class="font-weight-bolder">
+                                Roles Hiện Tại
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body ml-3" style="padding-right:70px">
+                        <div class="toolbar">
+                            @Html.ActionLink("Tạo role", "Create", null, new { @class = "btn btn-round btn-info" })
+                        </div>
+                        <hr />
+                        <div class="material-datatables">
+                            <div class="table-responsive">
+                                <table id="zero_config1" class="table table-striped row-border">
+                                    <thead style="background-color:bisque;font-size:25px; height:30px" class="text-center">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên quyền</th>
+                                            <th>Thao tác</th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <tr style="text-align:center">
+                                                <td class="title">
+                                                    <a class="link;" href="@Url.Action("Edit","NhanVien", new { Id = item.Id })">@item.Name</a>
+                                                </td>
+                                                <td>
+                                                    @item.Id
+                                                </td>
+                                                <td>
+                                                    @item.Name
+                                                </td>
+
+                                                <td>
+                                                    <a href="@Url.Action("EditR","NhanVien", new { id = item.Id })" class="btn btn-info btn-round" data-original-title="" title="">
+                                                        <i class="material-icons">edit</i>
+
+                                                    </a>
+                                                    <a href="@Url.Action("Delete", "NhanVien", new { id = item.Id })" class="btn btn-danger btn-round" data-original-title="" title="">
+                                                        <i class="material-icons">close</i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
+
+<!-- this page js -->
+<script src="~/Admin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+<script src="~/Admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+<script src="~/Admin/assets/extra-libs/DataTables/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#zero_config1').DataTable({
+            "paging": false,
+
+        });
+    });
+</script>
+
+
+
+
+
+
+

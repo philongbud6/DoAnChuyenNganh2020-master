@@ -1,0 +1,45 @@
+﻿@model WebApplication13.Models.ApplicationUser
+@{
+    ViewBag.Title = "DeleteNV";
+    Layout = "~/Views/Layout/_LayoutAdminNew.cshtml";
+}
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-info">
+                        <div class="card-icon">
+                            <div style="font-size:35px" class="font-weight-bolder">
+                                Danh Sách Nhân Viên
+                            </div>
+                            <div class="ripple-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body ml-5" style="padding-right:70px">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="text-center">
+                                    <h5>Bạn có chắc muốn xóa thành viên @Model.Email?</h5>
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                        <button type="submit" class="btn btn-info">Chấp nhận</button>
+
+                                        <a href="@Url.Action("NhanVien")" class="btn btn-default">Không xóa</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,25 @@
+﻿@model WebApplication13.Helper.DD_List
+
+<div class="row mt-3">
+    <label class="col-sm-2 col-form-label">Loại Sản Phẩm :</label>
+    <div class="col-sm-7">
+        <div class="form-group bmd-form-group">
+            @*@Html.DropDownList("NhaCungCapId", null, htmlAttributes: new { @class = "form-control" })*@
+            @Html.DropDownListFor(m => m.LoaiSP_Model, new SelectList(Model.LoaiSP_Model, "DD_LoaiSPId", "DD_TenLoai"), new { @class = "form-control", @style = "width:200px;", @onchange = "javascript:GetCity(this.value);" })
+        </div>
+    </div>
+</div>
+
+@ViewBag.ID
+
+<div class="row mt-3">
+    <label class="col-sm-2 col-form-label">Nhà Cung Cấp :</label>
+    <div class="col-sm-7">
+        <div class="form-group bmd-form-group">
+            <select class="form-control" id="ddlcity" name="ddlcity" style="width: 200px"></select>
+        </div>
+    </div>
+</div>
+
+
+

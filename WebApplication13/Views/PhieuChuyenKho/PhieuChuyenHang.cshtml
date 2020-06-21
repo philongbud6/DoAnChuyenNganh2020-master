@@ -1,0 +1,149 @@
+﻿@using WebApplication13.Models;
+
+@model List<PhieuChuyenKhoVM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_LayoutAdminNew.cshtml";
+}
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-info">
+                        <div class="card-icon">
+                            <div style="font-size:35px" class="font-weight-bolder">
+                                Danh Sách Phiếu Chuyển Kho
+                            </div>
+
+                            <div class="ripple-container"></div>
+                        </div>
+                        <div class="row float-right mr-4">
+                            <label class="col-form-label mt-4 mr-2" style="font-size:18px">Trạng Thái :</label>
+
+                            @Html.DropDownList("TrangThaiId", null, htmlAttributes: new { @class = "form-control", @style = "text-align:center;width:80px; margin-top:12px" })
+
+                            <input class="btn btn-info float-right ml-3 mt-3" style="height:80%" name="submitButton" id="btnxem" value="Xem" type="button">
+                        </div>
+                    </div>
+                    <div class="card-body ml-5" style="padding-right:70px">
+                        <div class="table-responsive">
+                            @*<table id="tblStudent" class="table" style="font-size:18px">
+                                    <thead class="text-primary">
+                                        <tr>
+                                            <th class="productth">Mã Sản Phẩm</th>
+                                            <th class="productth">Tên Sản Phẩm</th>
+                                            <th class="productth">Số Lượng Chuyển</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>*@
+                            <table id="tblStudent" class="table">
+                                <thead class=" text-primary" style="text-align:center">
+                                    <tr>
+                                        <th class="productth">Mã phiếu</th>
+                                        <th class="productth">Chuyển từ</th>
+                                        <th class="productth">Chuyển đến</th>
+                                        <th class="productth">Số Lượng Chuyển</th>
+                                        <th class="productth">Trạng Thái</th>
+                                        <th class="productth">Ghi Chú</th>
+                                        <th class="productth"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr style="text-align:center">
+                                            <td class="title">
+                                                @item.vPhieuChuyenKhoId
+                                            </td>
+                                            <td>
+                                                @item.vFromKho
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.vToKho)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.vSoLuongChuyen)
+
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.vTrangThai)
+                                            </td>
+                                            <td style="font-size:15px">
+                                                <span>
+                                                    @item.vFromKho<i class="material-icons" style="font-size:30px;color:mediumblue">@item.vConfirmFrom</i>
+                                                </span>
+                                                <span>
+                                                    @item.vToKho<i class="material-icons" style="font-size:30px;color:blue">@item.vConfirmTo</i>
+                                                </span>
+
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-outline-info" href="@Url.Action("CTPhieuChuyenKho","PhieuChuyenKho",new { phieuChuyenKhoId = item.vPhieuChuyenKhoId })">Chi Tiết</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section ScriptsTest
+{
+    <script type="text/javascript">
+
+            $(function () {
+                $("#btnxem").click(function () {
+                     LoadData();
+                });
+            });
+
+             function LoadData() {
+                $("#tblStudent tbody tr").remove();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("PhieuChuyenKhoByCuaHang")',
+                    dataType: 'json',
+                    data: { TrangThaiId: $("#TrangThaiId").val() },
+                    success: function (data) {
+                        var items = '';
+                        $.each(data, function (i, item) {
+                            var rows = "<tr style='text-align:center' >"
+                            + "<td class='prtoducttd'>" + item.vPhieuChuyenKhoId + "</td>"
+                            + "<td class='prtoducttd'>" + item.vFromKho + "</td>"
+                            + "<td class='prtoducttd'>" + item.vToKho + "</td>"
+                            + "<td class='prtoducttd'>" + item.vSoLuongChuyen + "</td>"
+                            + "<td class='prtoducttd'>" + item.vTrangThai + "</td>"
+                            + "<td class='prtoducttd'>"
+                               + "<span>" + item.vFromKho + "<i class='material-icons' style = 'font-size:30px;color:mediumblue'>" + item.vConfirmFrom + "</i>" + "</span>"
+                               + "<span>" + item.vToKho + "<i class='material-icons' style = 'font-size:30px;color:mediumblue'>" + item.vConfirmTo  + "</i>" + "</span>"
+                            + "</td>"
+                                + "<td class='prtoducttd'>" + "<a class='btn btn-outline-info' href='" + "CTPhieuChuyenKho?PhieuChuyenKhoId=" + item.vPhieuChuyenKhoId + "'" + ">" + "Chi Tiết" + "</a>" + "</td>"
+                            + "</tr>";
+                            $('#tblStudent tbody').append(rows);
+                        });
+                    },
+                    error: function (ex) {
+                        var r = jQuery.parseJSON(response.responseText);
+                        alert("Message: " + r.Message);
+                        alert("StackTrace: " + r.StackTrace);
+                        alert("ExceptionType: " + r.ExceptionType);
+                    }
+                });
+                return false;
+            }
+
+    </script>
+}
+
+

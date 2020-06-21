@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebApplication13.Models.SanPham>
+
+
+<table class="table table-bordered" style="border:4px">
+    <tr>
+        <th rowspan="@ViewBag.SoCuaHang">Cửa Hàng Còn Hàng</th>
+        <th>Tên Cửa Hàng</th>
+        <th>Số Lượng</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.KhoHang.TenKho</td>
+            <td>@item.SoLuong</td>
+        </tr>
+    }
+
+</table>
+
+

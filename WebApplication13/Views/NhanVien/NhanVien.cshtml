@@ -1,0 +1,90 @@
+﻿@using WebApplication13.Models;
+
+@model IEnumerable<ApplicationUser>
+
+@{
+    ViewBag.Title = "NhanVien";
+    Layout = "~/Views/Layout/_LayoutAdminNew.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-icon card-header-info">
+                    <div class="card-icon">
+                        <div style="font-size:35px" class="font-weight-bolder">
+                            Danh Sách Nhân Viên
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body ml-3" style="padding-right:70px">
+                    <div class="toolbar">
+                        <a class="btn btn-round btn-lg btn-info" href="@Url.Action("Register1","Account")">
+                            <i class="material-icons">add_circle_outline</i>
+                        </a>
+                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                    </div>
+                    <hr />
+                    <div class="material-datatables">
+                        <div class="table-responsive">
+                            <table id="zero_config1" class="table table-striped row-border">
+                                <thead style="background-color:bisque;font-size:25px; height:30px" class="text-center">
+                                    <tr>
+                                        <th>Họ tên</th>
+                                        <th>Số Điện Thoại</th>
+                                        <th>Cửa Hàng</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr style="text-align:center">
+                                            <td class="title">
+                                                <a class="link;" href="@Url.Action("Edit","NhanVien", new { Id = item.Id })">@item.FullName</a>
+                                            </td>
+                                            <td>
+                                                @item.SoDT
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CuaHang.TenCuaHang)
+                                            </td>
+
+                                            <td>
+                                                <a href="@Url.Action("Edit","NhanVien", new { id = item.Id })" class="btn btn-info btn-round" data-original-title="" title="">
+                                                    <i class="material-icons">edit</i>
+
+                                                </a>
+                                                <a href="@Url.Action("DeleteNV", "NhanVien", new { id = item.Id })" class="btn btn-danger btn-round" data-original-title="" title="">
+                                                    <i class="material-icons">close</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
+
+<!-- this page js -->
+<script src="~/Admin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+<script src="~/Admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+<script src="~/Admin/assets/extra-libs/DataTables/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#zero_config1').DataTable({
+            "paging": false,
+
+        });
+    });
+</script>

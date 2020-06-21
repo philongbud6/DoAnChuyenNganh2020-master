@@ -1,0 +1,187 @@
+﻿@model WebApplication13.Helper.DD_List
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Layout/_LayoutAdminNew.cshtml";
+}
+
+@using (Html.BeginForm("Create", "SanPhams", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="RangeValidation" class="form-horizontal" action="" method="" novalidate="novalidate">
+                    <div class="card ">
+                        <div class="card-header card-header-icon card-header-info">
+                            <div class="card-icon">
+                                <div style="font-size:40px" class="font-weight-bolder">
+                                    Thêm Sản Phẩm
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div style="font-size:18px" class="col-md-10 ml-auto mr-5">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div style="color:red"> @ViewBag.FileExists</div>
+                                <div class="row mt-1">
+                                    <label class="col-sm-3 col-form-label">Mã Sản Phẩm :</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            <input class="form-control" type="text" name="MaSanPham" required="true" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <label class="col-sm-3 col-form-label">Tên Sản Phẩm :</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            <input class="form-control" type="text" name="TenSP" required="true" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <label class="col-sm-3 col-form-label">Số Lượng :</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            <input class="form-control" type="number" name="SoLuong" required="true" number="true >0" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <label class="col-sm-3 col-form-label">Mô Tả :</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            <input class="form-control" type="text" name="MoTa" minlength="5" required="true" aria-required="true">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-1">
+                                    <label class="col-sm-3 col-form-label">Giá Bán :</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group bmd-form-group">
+                                            <input class="form-control" type="number" name="DonGia" number="true" required="true" aria-required="true">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mt-3">
+                                    <label class="col-sm-3 col-form-label">Loại Sản Phẩm :</label>
+                                    <div class="col-sm-2">
+                                        <div class="form-group bmd-form-group">
+                                            @*@Html.DropDownList("NhaCungCapId", null, htmlAttributes: new { @class = "form-control" })*@
+                                            @Html.DropDownListFor(m => m.LoaiSP_Model, new SelectList(Model.LoaiSP_Model, "DD_LoaiSPId", "DD_TenLoai"), new { @class = "form-control", @style = "width:160px; text-align:center", @onchange = "javascript:GetCity(this.value);" })
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-3 col-form-label" style="margin-left:25px">Nhà Cung Cấp :</label>
+                                    <div class="col-sm-2">
+                                        <div class="form-group bmd-form-group">
+                                            <select class="form-control" id="ddlcity" name="ddlcity" style="width: 160px;text-align:center"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <label class="col-sm-3 col-form-label">Hình ảnh display:</label>
+                                    <div class="col-sm-2">
+                                        <div class="fileinput fileinput-new text-center mt-3" data-provides="fileinput" style="width:200px">
+                                            <div class="fileinput-new thumbnail">
+                                                <img src="~/content/test/image_placeholder.jfif" alt="...">
+                                            </div>
+                                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+
+                                            <div>
+                                                <span class="btn btn-rose btn-round btn-file">
+                                                    <span class="fileinput-new">Select image</span>
+
+                                                    <span class="fileinput-exists">Change</span>
+                                                    <input name="Image1" id="Image1" type="file">
+                                                </span>
+                                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+                                <div class="form-group mt-4">
+                                    <div class="col-md-offset-2 col-md-10 mt-5 mb-5">
+                                        <input type="submit" value="Xác Nhận" class="btn btn-outline-danger btn-lg float-right" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @*<input name="Image2" id="Image2" type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+        <input type="file" name="Image2" id="Image2" class="dz-hidden-input" accept="image/*" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;"><div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: medium none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"><div style="border: medium none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div></div>*@
+    <script src="~/Content/Client/UP/jquery.js"></script>
+    <script src="~/Content/Client/UP/js.js"></script>
+    <script src="~/Content/Client/Img/dropzone.js"></script>
+    <script src="~/Content/Client/UP/argon.js"></script><div class="backdrop d-xl-none" data-action="sidenav-unpin" data-target="undefined"></div>
+    <link rel="stylesheet" href="~/Content/Client/UP/argon.css" type="text/css">
+
+
+}
+<script src="~/Content/Test/jquery.js"></script>
+
+<script src="~/Content/AdminNew_files/jquery_003.js"></script>
+<script>
+    function setFormValidation(id) {
+        $(id).validate({
+            highlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+                $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
+            },
+            success: function (element) {
+                $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+                $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                $(element).closest('.form-group').append(error);
+            },
+        });
+    }
+
+    $(document).ready(function () {
+        setFormValidation('#RegisterValidation');
+        setFormValidation('#TypeValidation');
+        setFormValidation('#LoginValidation');
+        setFormValidation('#RangeValidation');
+    });
+</script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function GetCity(_stateId) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#ddlcity").html(procemessage).show();
+        var url = "/SanPhams/GetNCCByLoaiSPId/";
+
+        $.ajax({
+            url: url,
+            data: { DD_LoaiSPId: _stateId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value='0'>Chọn Nhà Cung Cấp</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ddlcity").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+</script>
+

@@ -1,0 +1,116 @@
+﻿@using WebApplication13.Areas.Client.Models
+@model List<Client_GioHang>
+@{
+    ViewBag.Title = "Client_GioHang";
+    Layout = "~/Areas/Client/Views/Layout/_LayoutClient.cshtml";
+}
+
+<div class="main main-raised">
+    <div class="container">
+        <div class="card card-plain">
+            <div class="card-body">
+                <h3 class="card-title">Shopping Cart</h3>
+                <br>
+                <div class="material-datatables">
+                    <div class="table-responsive">
+                        <table id="zero_config1" class="table table-striped row-border">
+                            <thead style="font-size:25px; height:30px" class="text-center">
+                                <tr>
+                                    <th></th>
+                                    <th>Sản Phẩm</th>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Đơn Giá</th>
+                                    <th>Số Lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr style="font-size:18px ; text-align:center; font-weight:bold">
+                                        <td>
+                                            <div class="img-container">
+                                                <img src="@item.cURL_Image1" alt="..." style="width:150px;height:100px">
+                                            </div>
+                                        </td>
+                                        <td style="font-size:20px">
+                                            <a href="@Url.Action("CTSanPham", "Client_SanPham", new { Id = item.cSanPhamId })">@item.cTenSP</a>
+                                        </td>
+                                        <td>
+                                            Red
+                                        </td>
+                                        <td>
+                                            M
+                                        </td>
+                                        @using (Html.BeginForm("", "", new { @csanphamid = item.cSanPhamId }))
+                                        {
+                                            <td class="col-sm-1">
+                                                <input class="form-control" type="number" min="1" name="txtSoLuong" value="@item.cSoLuong" style="text-align:center; width:50px ; margin-left:20px" />
+                                            </td>
+                                            <td>
+                                                @string.Format("{0:0,0}", item.cDonGia) VNĐ
+                                            </td>
+
+                                            <td>
+                                                @string.Format("{0:0,0}", item.cThanhTien) VNĐ
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("XoaClient_GioHang", "Client_GioHang", new { @cSanPhamId = item.cSanPhamId })" type="submit" rel="tooltip" data-placement="left" title="" class="btn btn-link" data-original-title="Cap Nhat">
+                                                    <i class="material-icons">autorenew</i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("XoaClient_GioHang", "Client_GioHang", new { @cSanPhamId = item.cSanPhamId })" type="button" rel="tooltip" data-placement="left" title="" class="btn btn-link" data-original-title="Remove item">
+                                                    <i class="material-icons">close</i>
+                                                </a>
+                                            </td>
+                                        }
+
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td style="font-size:15px; font-weight:bold">
+                                        Tổng tiền :
+                                    </td>
+                                    <td colspan="1" class="td-price" style="margin-left:10px">
+                                        @String.Format("{0:0,0}", ViewBag.TongTien)
+                                    </td>
+                                    <td colspan="1" class="td-price" style="text-align:unset">VNĐ</td>
+
+                                    <td colspan="2" class="text-right">
+                                        <a type="button" href="@Url.Action("DatHang","Client_GioHang")" class="btn btn-info btn-round">Thanh Toán <i class="material-icons">keyboard_arrow_right</i></a>
+                                    </td>
+                                </tr>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    input[type='number'] {
+        -moz-appearance: textfield;
+    }
+</style>
+<script src="~/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
+
+<!-- this page js -->
+<script src="~/Admin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+<script src="~/Admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+<script src="~/Admin/assets/extra-libs/DataTables/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#zero_config1').DataTable({
+            "paging": false,
+
+        });
+    });
+</script>

@@ -1,0 +1,162 @@
+﻿@model IEnumerable<WebApplication13.Models.SanPham>
+
+@{
+    ViewBag.Title = "SPByNhaCungCap";
+    Layout = "~/Areas/Client/Views/Layout/_LayoutClient.cshtml";
+}
+
+<div class="main main-raised">
+    <div class="section" style="padding:20px">
+        <div class="container">
+            <h2 class="section-title"></h2>
+            <div class="row">
+                @Html.Action("Nav_NhaCungCap", "Client_Partial", new { TenLoai = ViewBag.TenLoai })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised" style="margin-top :5%;margin-bottom:3% ; height:50%;display:none">
+    <div class="section" style="padding:20px">
+        <div class="container">
+            <h2 class="section-title">Latest Offers</h2>
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main-raised" style="margin-top :3%;margin-bottom:3%; height:50%">
+    <div class="section" style="padding:7%; padding-bottom:0%;padding-top:3%">
+        <div class="container">
+            @if (Model.Count() == 0)
+            {
+                <div class="row">
+                    <label style="margin-left:45%; margin-right:-50%">( Không Có Sản Phẩm )</label>
+                </div>
+            }
+            else
+            {
+                <div class="row" style="resize:both">
+
+                    <div class="col-md-9">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-md-3 ; border">
+                                    <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                                        <div>
+                                            <a href="@Url.Action("CTSanPham", "Client_SanPham", new { Id = item.SanPhamId })">
+                                                <img src="@item.Url_img1" alt="..." style="width:170px;height:150px">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <a href="#">
+                                                <h4 class="card-title">@item.TenSP</h4>
+                                            </a>
+                                            <p class="description">
+                                                @item.MoTa.Substring(0, 20)...
+                                            </p>
+                                        </div>
+                                        <div class="card-footer justify-content-between">
+                                            <div class="price-container">
+                                                <span class="price"> @string.Format("{0:0,0}", item.DonGia) VNĐ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end card -->
+                                </div>
+                            }
+                        </div>
+                        <div id="frmLoadMore" class="row" style="display:none">
+                            @foreach (var item in Model.Skip(9).Take(4))
+                            {
+                                <div class="col-md-3 ; border">
+                                    <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                                        <div>
+                                            <a href="@Url.Action("CTSanPham", "Client_SanPham", new { Id = item.SanPhamId })">
+                                                <img src="@item.Url_img1" alt="..." style="width:170px;height:150px">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <a href="#">
+                                                <h4 class="card-title">@item.TenSP</h4>
+                                            </a>
+                                            <p class="description">
+                                                @item.MoTa.Substring(0, 20)...
+                                            </p>
+                                        </div>
+                                        <div class="card-footer justify-content-between">
+                                            <div class="price-container">
+                                                <span class="price"> @string.Format("{0:0,0}", item.DonGia) VNĐ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end card -->
+                                </div>
+                            }
+                            <div class="col-md-3 ml-auto mr-auto">
+                                <span id="btnloadmore1" rel="tooltip" class="btn btn-rose btn-round">Load more...</span>
+                            </div>
+                        </div>
+                        <div id="frmLoadMore1" class="row mt-0" style="display:none">
+                            @foreach (var item in Model.Skip(9).Take(4))
+                            {
+                                <div class="col-md-3 ; border">
+                                    <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                                        <div>
+                                            <a href="@Url.Action("CTSanPham", "Client_SanPham", new { Id = item.SanPhamId })">
+                                                <img src="@item.Url_img1" alt="..." style="width:170px;height:150px">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <a href="#">
+                                                <h4 class="card-title">@item.TenSP</h4>
+                                            </a>
+                                            <p class="description">
+                                                @item.MoTa.Substring(0, 20)...
+                                            </p>
+                                        </div>
+                                        <div class="card-footer justify-content-between">
+                                            <div class="price-container">
+                                                <span class="price"> @string.Format("{0:0,0}", item.DonGia) VNĐ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end card -->
+                                </div>
+                            }
+
+                        </div>
+                        <div class="col-md-3 ml-auto mr-auto mt-3">
+                            <span id="btnloadmore" rel="tooltip" class="btn btn-rose btn-round">Load more...</span>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+            }
+        </div>
+        <br>
+    </div>
+
+
+</div>
+<script src="~/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#btnloadmore").click(function () {
+            $("#frmLoadMore").slideDown(50);
+            $('#btnloadmore').hide();
+                });
+        $("#btnloadmore1").click(function () {
+            $("#frmLoadMore1").slideDown(50);
+            $('#btnloadmore1').hide();
+
+                });
+            })
+</script>
