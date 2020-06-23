@@ -31,7 +31,7 @@ namespace WebApplication13
                 Port = 587,
                 UseDefaultCredentials = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new NetworkCredential("truongta9701@gmail.com", "Tt30091997"),
+                Credentials = new NetworkCredential("truongta9701@gmail.com", ""),
                 EnableSsl = true,
 
             };
