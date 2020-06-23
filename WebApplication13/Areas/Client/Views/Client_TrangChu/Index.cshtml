@@ -10,8 +10,13 @@
 }
 <div class="main main-raised">
     <div class="section" style="padding:20px">
-        
-    </div>
+        <div class="container">
+            <h2 class="section-title">Latest Offers</h2>
+            <div class="row">
+                @Html.Action("TopOffer_Partial", "Client_partial")
+            </div>
+        </div>
+    </div>s
 </div>
 <!--Dien Thoai-->
 @foreach (var item in Model)

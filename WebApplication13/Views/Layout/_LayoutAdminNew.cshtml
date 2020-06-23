@@ -89,316 +89,297 @@
 
                 <!-- #endregion -->
                 <!-- #region Silde bar -->
-                <ul class="nav">
-                    <!-- #region Trang Chủ -->
-                    <li class="nav-item ">
-                        <a class="nav-link" href="@Url.Action("TrangChu","Admin")">
-                            <i class="material-icons">dashboard</i>
-                            <p> Trang Chủ</p>
-                        </a>
-                    </li>
+            <ul class="nav">
+                <!-- #region Trang Chủ -->
+                <li class="nav-item ">
+                    <a class="nav-link" href="@Url.Action("TrangChu","Admin")">
+                        <i class="material-icons">dashboard</i>
+                        <p> Trang Chủ</p>
+                    </a>
+                </li>
 
-                    <!-- #endregion -->
-                    <!-- #region Quản Lý Sản Phẩm -->
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-                            <i class="material-icons">image</i>
-                            <p>
-                                Quản Lý Sản Phẩm
-                                <b class="caret"></b>
-                            </p>
-                        </a>
+                <!-- #endregion -->
+                <!-- #region Quản Lý Sản Phẩm -->
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+                        <i class="material-icons">image</i>
+                        <p>
+                            Quản Lý Sản Phẩm
+                            <b class="caret"></b>
+                        </p>
+                    </a>
 
-                        <div class="collapse" id="pagesExamples">
+                    <div class="collapse" id="pagesExamples">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Create","SanPhams")">
+                                    <span class="sidebar-mini"> P </span>
+                                    <span class="sidebar-normal"> Thêm Sản Phẩm</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Index","SanPhams")">
+                                    <span class="sidebar-mini"> RS </span>
+                                    <span class="sidebar-normal"> Danh Sách Sản Phẩm </span>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- #endregion -->
+                <!-- #region Quản Ly Loại Sản Phẩm -->
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+                        <i class="material-icons">content_paste</i>
+                        <p>
+                            Quản Lý Loại Sản Phẩm
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="formsExamples">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Create","LoaiSPs")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal">Thêm Loại Sản Phẩm</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Index","LoaiSPs")">
+                                    <span class="sidebar-mini"> DS </span>
+                                    <span class="sidebar-normal">Danh Sách Loại Sản Phẩm</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- #endregion -->
+                <!-- #region Quản Lý Nhà Cung Cấp -->
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+                        <i class="material-icons">grid_on</i>
+                        <p>
+                            Quản Lý Nhà Cung Cấp
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesExamples">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Create","NhaCungCaps")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal">Thêm Nhà Cung Cấp</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Index","NhaCungCaps")">
+                                    <span class="sidebar-mini"> DS </span>
+                                    <span class="sidebar-normal">Nhà Cung Cấp</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+
+                <!-- #endregion -->
+                <!-- #region Quản Lý Kho Vận -->
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#tableskhoVan">
+                        <i class="material-icons">grid_on</i>
+                        <p>
+                            Quản Lý Kho Vận
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tableskhoVan">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Create","PhieuChuyenKho")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal"> Lập Phiếu Mới</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Index","PhieuChuyenKho")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal">Danh Sách Phiếu Nhận Hàng</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+
+                                <a class="nav-link" href="@Url.Action("TaiKhoan","Nhanvien")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal">Danh sách Phiếu Chuyển Hàng</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+
+                <!-- #endregion -->
+                <!-- #region Quản Lý Kho Vận -->
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#tablesDH">
+                        <i class="material-icons">grid_on</i>
+                        <p>
+                            Quản Lý Đơn Hàng
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesDH">
+                      
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Index","DonHangs")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal">Danh Sách Đơn Hàng</span>
+                                </a>
+                            </li>
+                        </ul>                    
+                    </div>
+                </li>
+
+                <!-- #endregion -->
+                <!-- #region Thống kê -->
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#ThongKe">
+                        <i class="material-icons">insert_chart_outlined</i>
+                        <p>
+                            Thống Kê Doanh Số
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="ThongKe">
+                        <ul class="nav">
+
+                          
                             <ul class="nav">
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Create","SanPhams")">
-                                        <span class="sidebar-mini"> P </span>
-                                        <span class="sidebar-normal"> Thêm Sản Phẩm</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Index","SanPhams")">
-                                        <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal"> Danh Sách Sản Phẩm </span>
-                                    </a>
-                                </li>
-
-
-                            </ul>
-                        </div>
-                    </li>
-
-                    <!-- #endregion -->
-                    <!-- #region Quản Ly Loại Sản Phẩm -->
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-                            <i class="material-icons">content_paste</i>
-                            <p>
-                                Quản Lý Loại Sản Phẩm
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="formsExamples">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Create","LoaiSPs")">
-                                        <span class="sidebar-mini"> T </span>
-                                        <span class="sidebar-normal">Thêm Loại Sản Phẩm</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Index","LoaiSPs")">
+                                    <a class="nav-link" href="@Url.Action("TongDoanhSo","ThongKeAdmin")">
                                         <span class="sidebar-mini"> DS </span>
-                                        <span class="sidebar-normal">Danh Sách Loại Sản Phẩm</span>
+                                        <span class="sidebar-normal">Thống kê Tổng Doanh Số</span>
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                    </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" data-toggle="collapse" href="#BieuDo">
+                                    <span class="sidebar-mini"> </span>
+                                    <span class="sidebar-normal">
+                                        Biểu Đồ
+                                        <b class="caret"></b>
+                                    </span>
+                                </a>
+                                <div class="collapse" id="BieuDo">
+                                    <ul class="nav">
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="@Url.Action("TongDS","ThongKeAdmin")">
+                                                <span class="sidebar-mini"> DS </span>
+                                                <span class="sidebar-normal">Biểu đồ line</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                    <!-- #endregion -->
-                    <!-- #region Quản Lý Nhà Cung Cấp -->
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
-                            <i class="material-icons">grid_on</i>
-                            <p>
-                                Quản Lý Nhà Cung Cấp
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="tablesExamples">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Create","NhaCungCaps")">
-                                        <span class="sidebar-mini"> T </span>
-                                        <span class="sidebar-normal">Thêm Nhà Cung Cấp</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Index","NhaCungCaps")">
-                                        <span class="sidebar-mini"> DS </span>
-                                        <span class="sidebar-normal">Nhà Cung Cấp</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
-                        </div>
-                    </li>
+                <!-- #endregion -->
+                <!-- #region Quản Lý Nhân Viên -->
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#tablesRole">
+                        <i class="material-icons">grid_on</i>
+                        <p>
+                            Quản Lý Nhân Viên
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesRole">
 
-                    <!-- #endregion -->
-                    <!-- #region Quản Lý Kho Vận -->
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#tableskhoVan">
-                            <i class="material-icons">grid_on</i>
-                            <p>
-                                Quản Lý Kho Vận
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="tableskhoVan">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Create","PhieuChuyenKho")">
-                                        <span class="sidebar-mini"> T </span>
-                                        <span class="sidebar-normal"> Lập Phiếu Mới</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Index","PhieuChuyenKho")">
-                                        <span class="sidebar-mini"> T </span>
-                                        <span class="sidebar-normal">Danh Sách Phiếu Nhận Hàng</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item ">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("register1","Account")">
+                                    <span class="sidebar-mini"> DS </span>
+                                    <span class="sidebar-normal">Thêm Nhân Viên</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("NhanVien","NhanVien")">
+                                    <span class="sidebar-mini"> DS </span>
+                                    <span class="sidebar-normal">Danh Sách Nhân Viên</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
-                                    <a class="nav-link" href="@Url.Action("TaiKhoan","Nhanvien")">
-                                        <span class="sidebar-mini"> T </span>
-                                        <span class="sidebar-normal">Danh sách Phiếu Chuyển Hàng</span>
-                                    </a>
-                                </li>
-                            </ul>
+                <!-- #endregion -->
+                <!-- #region Quản Lý Tài Khoản -->
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#tablesaccount">
+                        <i class="material-icons">grid_on</i>
+                        <p>
+                            Quản Lý Tài Khoản
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesaccount">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("register","account")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal">Thêm Tài Khoản</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("Create","NhanVien")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal">Thêm Quyền</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
 
-                        </div>
-                    </li>
+                                <a class="nav-link" href="@Url.Action("TaiKhoan","Nhanvien")">
+                                    <span class="sidebar-mini"> T </span>
+                                    <span class="sidebar-normal">Danh sách Tài Khoản</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="@Url.Action("roles","NhanVien")">
+                                    <span class="sidebar-mini"> DS </span>
+                                    <span class="sidebar-normal">Danh Sách Quyền Hiện Tại</span>
+                                </a>
+                            </li>
+                        </ul>
 
-                    <!-- #endregion -->
-                    <!-- #region Cửa hàng -->
-                    <!--<li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
-                            <i class="material-icons">apps</i>
-                            <p>
-                                Quản Lý Cửa Hàng
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="componentsExamples">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" data-toggle="collapse" href="#componentsCollapse">
-                                        <span class="sidebar-mini"> MLT </span>
-                                        <span class="sidebar-normal">
-                                            Danh Sách Cửa Hàng
-                                            <b class="caret"></b>
-                                        </span>
-                                    </a>
-                                    <div class="collapse" id="componentsCollapse">
+                    </div>
+                </li>
 
-                                    </div>
-
-                                </li>
-
-                            </ul>
-                        </div>
-                    </li>
-                    End Quản Lý Cửa Hàng-->
-                    <!-- #endregion -->
-                    <!-- #region Thống kê -->
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#ThongKe">
-                            <i class="material-icons">insert_chart_outlined</i>
-                            <p>
-                                Thống Kê Doanh Số
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="ThongKe">
-                            <ul class="nav">
-
-                                <li class="nav-item ">
-                                    <a class="nav-link" data-toggle="collapse" href="#CuaHang">
-                                        <span class="sidebar-mini"> </span>
-                                        <span class="sidebar-normal">
-                                            Thống Kê Theo Cửa Hàng
-                                            <b class="caret"></b>
-                                        </span>
-                                    </a>
-                                    <div class="collapse" id="CuaHang">
-                                        @*@Html.Action("TKCuaHang", "Admin")*@
-                                    </div>
-
-                                </li>
-                                <ul class="nav">
-                                    <li class="nav-item ">
-                                        <a class="nav-link" href="@Url.Action("TongDoanhSo","ThongKeAdmin")">
-                                            <span class="sidebar-mini"> DS </span>
-                                            <span class="sidebar-normal">Thống kê Tổng Doanh Số</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <li class="nav-item ">
-                                    <a class="nav-link" data-toggle="collapse" href="#BieuDo">
-                                        <span class="sidebar-mini"> </span>
-                                        <span class="sidebar-normal">
-                                            Biểu Đồ
-                                            <b class="caret"></b>
-                                        </span>
-                                    </a>
-                                    <div class="collapse" id="BieuDo">
-                                        <ul class="nav">
-                                            <li class="nav-item ">
-                                                <a class="nav-link" href="@Url.Action("TongDS","ThongKeAdmin")">
-                                                    <span class="sidebar-mini"> DS </span>
-                                                    <span class="sidebar-normal">Biểu đồ line</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <!-- #endregion -->
-                    <!-- #region Quản Lý Nhân Viên -->
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#tablesRole">
-                            <i class="material-icons">grid_on</i>
-                            <p>
-                                Quản Lý Nhân Viên
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="tablesRole">
-
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("register1","Account")">
-                                        <span class="sidebar-mini"> DS </span>
-                                        <span class="sidebar-normal">Thêm Nhân Viên</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("NhanVien","NhanVien")">
-                                        <span class="sidebar-mini"> DS </span>
-                                        <span class="sidebar-normal">Danh Sách Nhân Viên</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <!-- #endregion -->
-                    <!-- #region Quản Lý Tài Khoản -->
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#tablesaccount">
-                            <i class="material-icons">grid_on</i>
-                            <p>
-                                Quản Lý Tài Khoản
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="tablesaccount">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("register","account")">
-                                        <span class="sidebar-mini"> T </span>
-                                        <span class="sidebar-normal">Thêm Tài Khoản</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Create","NhanVien")">
-                                        <span class="sidebar-mini"> T </span>
-                                        <span class="sidebar-normal">Thêm Quyền</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item ">
-
-                                    <a class="nav-link" href="@Url.Action("TaiKhoan","Nhanvien")">
-                                        <span class="sidebar-mini"> T </span>
-                                        <span class="sidebar-normal">Danh sách Tài Khoản</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("roles","NhanVien")">
-                                        <span class="sidebar-mini"> DS </span>
-                                        <span class="sidebar-normal">Danh Sách Quyền Hiện Tại</span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </li>
-
-                    <!-- #endregion -->
-                </ul>
+                <!-- #endregion -->
+            </ul>
 
 
                 <!-- #endregion -->

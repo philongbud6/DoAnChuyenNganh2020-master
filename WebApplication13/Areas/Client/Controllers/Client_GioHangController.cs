@@ -182,7 +182,7 @@ namespace WebApplication13.Areas.Client.Controllers
             Session["Client_GioHang"] = null;
             if (collection["rad"] == "RadSDT")
             {
-                string ToNumber = "+84" + collection["Sdt"].Substring(2);
+                string ToNumber = "+84" + collection["Sdt"].Substring(1);
                 ServiceSMS sms = new ServiceSMS();
                 sms.SendSMS(ToNumber, DH.TokenKey);
                 return RedirectToAction("VerifySMS");
@@ -233,7 +233,7 @@ namespace WebApplication13.Areas.Client.Controllers
                 var DonHang = db.DonHangs.SingleOrDefault(n => n.TokenKey == TokenKey);                
                 DonHang.TokenKey = "";
                 DonHang.TrangThaiDH = EnumExtensions.GetDescription(Enumstatus.Confirmed);
-                email.ThongBaoDonHangMoiAsync("Cửa Hàng","truongta9701@gmail.com","Truong",DonHang.SoLuongBan.ToString(),DonHang.TongTien.ToString(),DonHang.NgayMua.ToString(),"Truongta9701@gmail.com","BinhTan");
+                email.ThongBaoDonHangMoiAsync("Cửa Hàng","philong110597@gmail.com","Truong",DonHang.SoLuongBan.ToString(),DonHang.TongTien.ToString(),DonHang.NgayMua.ToString(),"Truongta9701@gmail.com","BinhTan");
 
                 db.SaveChanges();
                 return RedirectToAction("Result");

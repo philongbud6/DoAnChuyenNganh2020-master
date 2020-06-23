@@ -16,8 +16,10 @@
                 <form id="RangeValidation" class="form-horizontal" action="" method="" novalidate="novalidate">
                     <div class="card ">
                         <div class="card-header card-header-info card-header-text">
-                            <div class="card-text">
-                                <h4 class="card-title">Thông Tin Sản Phẩm</h4>
+                            <div class="card-icon">
+                                <div style="font-size:40px" class="font-weight-bolder">
+                                    Danh Sách Sản Phẩm
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -73,26 +75,30 @@
 
                                 </div>
 
+                             
+
+
+
                                 @*<div class="row mt-3">
-                                        <label class="col-sm-2 col-form-label">Nhà Cung Cấp :</label>
-                                        <div class="col-sm-7">
-                                            <div class="form-group bmd-form-group">
-                                                @Html.DropDownList("NhaCungCapId", null, htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.NhaCungCapId, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
+            <label class="col-sm-2 col-form-label">Nhà Cung Cấp :</label>
+            <div class="col-sm-7">
+                <div class="form-group bmd-form-group">
+                    @Html.DropDownList("NhaCungCapId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NhaCungCapId, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                                    </div>
+        </div>
 
-                                    <div class="row mt-3">
-                                        <label class="col-sm-2 col-form-label">Loại Sản Phẩm :</label>
-                                        <div class="col-sm-7">
-                                            <div class="form-group bmd-form-group">
-                                                @Html.DropDownList("LoaiSPId", null, htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.LoaiSPId, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>*@
+        <div class="row mt-3">
+            <label class="col-sm-2 col-form-label">Loại Sản Phẩm :</label>
+            <div class="col-sm-7">
+                <div class="form-group bmd-form-group">
+                    @Html.DropDownList("LoaiSPId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LoaiSPId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
                                 @*@Html.Action("EditDDL", new {@id = Model.LoaiSPId })*@
 
                                 <div class="form-group mt-4">
@@ -108,6 +114,7 @@
                 </form>
             </div>
         </div>
+
     </div>
 
 }

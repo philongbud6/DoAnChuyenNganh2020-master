@@ -19,9 +19,9 @@ namespace WebApplication13
         public static int SendPort = 587;
         public static string Name = "WebBanHang";
         public static string Username = "WebBanHang";
-        public static string EmailAddress = "truongta9701@gmail.com";
-        public static string Account = "truongta9701@gmail.com";
-        public static string Password = "lvyudrjznoxpaomy";
+        public static string EmailAddress = "philong110597@gmail.com";
+        public static string Account = "philong110597@gmail.com";
+        public static string Password = "neryxhervthezbxc";
     }
 }
 
